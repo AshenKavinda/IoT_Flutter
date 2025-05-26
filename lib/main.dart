@@ -1,6 +1,10 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
@@ -15,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   Color iconColor = Colors.black;
   int ledState = 0;
   Text textState = Text("ON");
-
+  final dbR = FirebaseDatabase.instance.ref();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,6 +49,7 @@ class _MyAppState extends State<MyApp> {
                       iconColor = Colors.black;
                       textState = Text("ON");
                     }
+                    dbR.child("light").set({"awitch": ledState});
                   });
                 },
                 child: textState,
