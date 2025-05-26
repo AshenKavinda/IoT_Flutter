@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "182478109040",
+    "firebase_url": "https://bulbcontroller-33731-default-rtdb.firebaseio.com",
+    "project_id": "bulbcontroller-33731",
+    "storage_bucket": "bulbcontroller-33731.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182478109040:android:0bbb73b9e69bde12c3b7b5",
+        "android_client_info": {
+          "package_name": "com.example.app1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5nrGccu2mEP87ahh0XVMrnWutj69KPQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
