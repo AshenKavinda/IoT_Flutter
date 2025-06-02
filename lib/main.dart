@@ -1,11 +1,16 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  // Ensure Flutter bindings are initialized before Firebase
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -18,41 +23,40 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Color iconColor = Colors.black;
   int ledState = 0;
-  Text textState = Text("ON");
   final dbR = FirebaseDatabase.instance.ref();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Iot App 08"),
+          title: const Text("IoT App 08"),
           backgroundColor: Colors.blueAccent,
           centerTitle: true,
         ),
         body: Center(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(height: 20),
-              Text("LED 01"),
-              SizedBox(height: 20),
-              Icon(Icons.lightbulb, color: iconColor),
-              SizedBox(height: 20),
+              const Text("LED 01"),
+              const SizedBox(height: 20),
+              Icon(Icons.lightbulb, color: iconColor, size: 60),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   setState(() {
                     if (ledState == 0) {
                       ledState = 1;
                       iconColor = Colors.yellow;
-                      textState = Text("OFF");
                     } else {
                       ledState = 0;
                       iconColor = Colors.black;
-                      textState = Text("ON");
                     }
+                    // Write to Firebase
                     dbR.child("light").set({"awitch": ledState});
                   });
                 },
-                child: textState,
+                child: Text(ledState == 0 ? "ON" : "OFF"),
               ),
             ],
           ),
