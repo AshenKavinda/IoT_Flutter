@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
                       iconColor = Colors.black;
                     }
                     // Write to Firebase
-                    dbR.child("light").set({"awitch": ledState});
+                    dbR.child("light").set({"switch": ledState});
                   });
                 },
                 child: Text(ledState == 0 ? "ON" : "OFF"),
